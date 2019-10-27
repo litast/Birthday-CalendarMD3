@@ -82,6 +82,7 @@
             this.btn_Today.TabIndex = 8;
             this.btn_Today.Text = "Today";
             this.btn_Today.UseVisualStyleBackColor = true;
+            this.btn_Today.Click += new System.EventHandler(this.btn_Today_Click);
             // 
             // chb_SkipYear
             // 

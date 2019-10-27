@@ -32,12 +32,12 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.btn_NewReminder = new System.Windows.Forms.Button();
             this.dgv_ReminderTable = new System.Windows.Forms.DataGridView();
-            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Month = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Year = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NameTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mc_Calendar = new System.Windows.Forms.MonthCalendar();
+            this.ht_Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ht_Month = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ht_Year = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ht_Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ht_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_ReminderTable)).BeginInit();
             this.SuspendLayout();
             // 
@@ -66,11 +66,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgv_ReminderTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_ReminderTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Date,
-            this.Month,
-            this.Year,
-            this.Type,
-            this.NameTitle});
+            this.ht_Date,
+            this.ht_Month,
+            this.ht_Year,
+            this.ht_Type,
+            this.ht_Name});
             this.dgv_ReminderTable.EnableHeadersVisualStyles = false;
             this.dgv_ReminderTable.Location = new System.Drawing.Point(11, 224);
             this.dgv_ReminderTable.Margin = new System.Windows.Forms.Padding(20, 0, 20, 0);
@@ -82,61 +82,61 @@
             this.dgv_ReminderTable.TabIndex = 2;
             this.dgv_ReminderTable.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1_CellContentClick);
             // 
-            // Date
-            // 
-            this.Date.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.Date.HeaderText = "Date";
-            this.Date.MaxInputLength = 2;
-            this.Date.MinimumWidth = 6;
-            this.Date.Name = "Date";
-            this.Date.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Date.Width = 67;
-            // 
-            // Month
-            // 
-            this.Month.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.Month.HeaderText = "Month";
-            this.Month.MaxInputLength = 3;
-            this.Month.MinimumWidth = 6;
-            this.Month.Name = "Month";
-            this.Month.Width = 76;
-            // 
-            // Year
-            // 
-            this.Year.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.Year.HeaderText = "Year";
-            this.Year.MaxInputLength = 4;
-            this.Year.MinimumWidth = 6;
-            this.Year.Name = "Year";
-            this.Year.Width = 67;
-            // 
-            // Type
-            // 
-            this.Type.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.Type.HeaderText = "Type";
-            this.Type.MaxInputLength = 2;
-            this.Type.MinimumWidth = 6;
-            this.Type.Name = "Type";
-            this.Type.Width = 69;
-            // 
-            // NameTitle
-            // 
-            this.NameTitle.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.NameTitle.HeaderText = "Name";
-            this.NameTitle.MaxInputLength = 100;
-            this.NameTitle.MinimumWidth = 6;
-            this.NameTitle.Name = "NameTitle";
-            // 
             // mc_Calendar
             // 
             this.mc_Calendar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.mc_Calendar.Location = new System.Drawing.Point(80, 9);
-            this.mc_Calendar.Margin = new System.Windows.Forms.Padding(20, 20, 20, 20);
+            this.mc_Calendar.Margin = new System.Windows.Forms.Padding(20);
             this.mc_Calendar.Name = "mc_Calendar";
             this.mc_Calendar.TabIndex = 3;
             // 
-            // fm_FormMain
+            // ht_Date
+            // 
+            this.ht_Date.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.ht_Date.HeaderText = "Date";
+            this.ht_Date.MaxInputLength = 2;
+            this.ht_Date.MinimumWidth = 6;
+            this.ht_Date.Name = "ht_Date";
+            this.ht_Date.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ht_Date.Width = 67;
+            // 
+            // ht_Month
+            // 
+            this.ht_Month.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.ht_Month.HeaderText = "Month";
+            this.ht_Month.MaxInputLength = 3;
+            this.ht_Month.MinimumWidth = 6;
+            this.ht_Month.Name = "ht_Month";
+            this.ht_Month.Width = 76;
+            // 
+            // ht_Year
+            // 
+            this.ht_Year.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.ht_Year.HeaderText = "Year";
+            this.ht_Year.MaxInputLength = 4;
+            this.ht_Year.MinimumWidth = 6;
+            this.ht_Year.Name = "ht_Year";
+            this.ht_Year.Width = 67;
+            // 
+            // ht_Type
+            // 
+            this.ht_Type.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.ht_Type.HeaderText = "Type";
+            this.ht_Type.MaxInputLength = 2;
+            this.ht_Type.MinimumWidth = 6;
+            this.ht_Type.Name = "ht_Type";
+            this.ht_Type.Width = 69;
+            // 
+            // ht_Name
+            // 
+            this.ht_Name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ht_Name.HeaderText = "Name";
+            this.ht_Name.MaxInputLength = 100;
+            this.ht_Name.MinimumWidth = 6;
+            this.ht_Name.Name = "ht_Name";
+            // 
+            // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -149,7 +149,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Name = "fm_FormMain";
+            this.Name = "FormMain";
             this.Text = "Birthday Calendar";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_ReminderTable)).EndInit();
@@ -161,11 +161,11 @@
         private System.Windows.Forms.Button btn_NewReminder;
         private System.Windows.Forms.DataGridView dgv_ReminderTable;
         private System.Windows.Forms.MonthCalendar mc_Calendar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Date;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Month;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Year;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Type;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NameTitle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ht_Date;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ht_Month;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ht_Year;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ht_Type;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ht_Name;
     }
 }
 

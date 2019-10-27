@@ -18,5 +18,10 @@ namespace Birthday_Calendar
         {
 
         }
+
+        private void btn_Today_Click(object sender, System.EventArgs e)
+        {
+
+        }
     }
 }
