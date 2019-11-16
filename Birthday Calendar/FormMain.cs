@@ -6,27 +6,33 @@ namespace Birthday_Calendar
 {
     public partial class FormMain : Form
     {
-        private readonly DataGridView myeventsDataGrdView = new DataGridView();
-        public FormAddReminder frm_AddReminder = new FormAddReminder();
-        public string activeMonth = DateTime.Now.ToString("MMMMM");
 
-        public static String[,] mydataarray = new String[,] {
+        private string activeMonth = DateTime.Now.ToString("MMMMM");
+        readonly DataTable dtMyEvents = new DataTable("MyDataTable");
+        public bool buttonNewWasClicked = false;
+        public bool editModeOn = false;
+        public static int selected_row;
+
+        private string[,] mydataarray = new string[,] {
                 { "10", "oktobris", "1959", "Dz", "Inga Āboltiņa" },
                 { "10", "oktobris", null, "Vd", "Arvīds Ore" },
                 { "13", "oktobris", "1963", "Dz", "Grata Upeniece" },
                 { "13", "oktobris", "1989", "Dz", "Kristaps Krūklis" },
                 { "17", "oktobris", "1992", "M", "Tēta" },
-                { "19", "oktobris", null, "Vd", "Elīna Cielava" },
+                { "19", "oktobris", null, "Vd", "Elīna" },
                 { "31", "oktobris", null, "C", "Helovīns" },
                 { "06", "novembris", "1985", "Dz", "Aija Liepiņa" },
                 { "13", "novembris", "1941", "Dz", "Sarma Grūbe" },
-                { "29", "novembris", null, "Dz", "Dzidra Kavace" }
+                { "29", "novembris", null, "Dz", "Dzidra Kavace" },
+                { "04", "decembris", "1960", "Dz", "Simona" },
+                { "19", "decembris", "1954", "Dz", "Ņina" },
+                { "24", "decembris", null, "Sv", "Ziemassvētku vakars" }
             };
-        public static int selected_row;
 
         public FormMain()
         {
             InitializeComponent();
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -43,15 +49,14 @@ namespace Birthday_Calendar
 
         private DataTable MyDataTable()
         {
+            dtMyEvents.Clear();
 
-            DataTable dtMyEvents = new DataTable("MyDataTable");
-
-            //Create columns and add to DataTable;
-            dtMyEvents.Columns.Add("Day", typeof(int));
-            dtMyEvents.Columns.Add("Month");
-            dtMyEvents.Columns.Add("Year", typeof(String));
-            dtMyEvents.Columns.Add("Type");
-            dtMyEvents.Columns.Add("Name", typeof(String));
+            //Create columns and add to DataTable
+            if (!dtMyEvents.Columns.Contains("Day")) dtMyEvents.Columns.Add("Day", typeof(int));
+            if (!dtMyEvents.Columns.Contains("Month")) dtMyEvents.Columns.Add("Month");
+            if (!dtMyEvents.Columns.Contains("Year")) dtMyEvents.Columns.Add("Year", typeof(String));
+            if (!dtMyEvents.Columns.Contains("Type")) dtMyEvents.Columns.Add("Type");
+            if (!dtMyEvents.Columns.Contains("Name")) dtMyEvents.Columns.Add("Name", typeof(String));
 
             DataRow dr;
             for (int count = 0; count <= mydataarray.GetLength(0) - 1; count++)
@@ -70,7 +75,40 @@ namespace Birthday_Calendar
 
             }
 
+            dtMyEvents.Dispose();
             return dtMyEvents;
+        }
+
+        public DataTable DataTable_DeleteRecord()
+        {
+            dtMyEvents.Rows.RemoveAt(selected_row);
+
+            dtMyEvents.Dispose();
+            return dtMyEvents;
+        }
+
+        public DataTable DataTable_AddRecord(int d, Enum m, int y, Enum t, string n)
+        {
+
+            DataRow dr;
+            dr = dtMyEvents.NewRow();
+            dr["Day"] = d;
+            dr["Month"] = m;
+            if (y == 0000)
+            {
+                dr["Year"] = null;
+            }
+            else
+            {
+                dr["Year"] = y;
+            }
+            dr["Type"] = t;
+            dr["Name"] = n;
+            dtMyEvents.Rows.Add(dr);
+
+            dtMyEvents.Dispose();
+            return dtMyEvents;
+
         }
 
         private void DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -83,7 +121,6 @@ namespace Birthday_Calendar
 
             MyEvent.day = Convert.ToInt32(dgv[0, r].Value);
             MyEvent.month = (MonthEnums)Enum.Parse(typeof(MonthEnums), Convert.ToString(dgv[1, r].Value));
-
             if (dgv.Rows[r].Cells[2].Value == null || dgv.Rows[r].Cells[2].Value == DBNull.Value || String.IsNullOrWhiteSpace(dgv.Rows[r].Cells[2].Value.ToString()))
             {
                 MyEvent.year = 0000;
@@ -92,18 +129,23 @@ namespace Birthday_Calendar
             {
                 MyEvent.year = Convert.ToInt32(dgv[2, r].Value);
             }
-
             MyEvent.type = (TypeEnums)Enum.Parse(typeof(TypeEnums), Convert.ToString(dgv[3, r].Value));
             MyEvent.name = Convert.ToString(dgv[4, r].Value);
 
-            var f = new FormAddReminder();
-            f.ShowDialog();
+            editModeOn = true;
+
+            FormAddReminder f2 = new FormAddReminder(this); // Create a new FormAddReminder, and pass a reference to FormMain
+            f2.ShowDialog(); // Show the form
 
         }
 
         private void btn_New_Click(object sender, EventArgs e)
         {
-            frm_AddReminder.Show();
+            buttonNewWasClicked = true;
+            editModeOn = false;
+            FormAddReminder f2 = new FormAddReminder(this);
+            f2.Show();
+            buttonNewWasClicked = false;
         }
 
         private void mc_Calendar_DateChanged(object sender, DateRangeEventArgs e)

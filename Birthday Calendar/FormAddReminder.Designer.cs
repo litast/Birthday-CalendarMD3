@@ -40,10 +40,10 @@
             this.lb_Month = new System.Windows.Forms.Label();
             this.lb_Day = new System.Windows.Forms.Label();
             this.gb_Event = new System.Windows.Forms.GroupBox();
-            this.lb_Type = new System.Windows.Forms.Label();
-            this.cb_Type = new System.Windows.Forms.ComboBox();
             this.tb_Name = new System.Windows.Forms.TextBox();
+            this.lb_Type = new System.Windows.Forms.Label();
             this.lb_Name = new System.Windows.Forms.Label();
+            this.cb_Type = new System.Windows.Forms.ComboBox();
             this.btn_Save = new System.Windows.Forms.Button();
             this.btn_Delete = new System.Windows.Forms.Button();
             this.btn_Cancel = new System.Windows.Forms.Button();
@@ -122,7 +122,7 @@
             this.tb_Day.Name = "tb_Day";
             this.tb_Day.Size = new System.Drawing.Size(30, 22);
             this.tb_Day.TabIndex = 3;
-            this.tb_Day.TextChanged += new System.EventHandler(this.tb_Date_TextChanged);
+            this.tb_Day.TextChanged += new System.EventHandler(this.tb_Day_TextChanged);
             // 
             // lb_Year
             // 
@@ -165,6 +165,13 @@
             this.gb_Event.TabStop = false;
             this.gb_Event.Text = "Event";
             // 
+            // tb_Name
+            // 
+            this.tb_Name.Location = new System.Drawing.Point(63, 72);
+            this.tb_Name.Name = "tb_Name";
+            this.tb_Name.Size = new System.Drawing.Size(236, 22);
+            this.tb_Name.TabIndex = 2;
+            // 
             // lb_Type
             // 
             this.lb_Type.AutoSize = true;
@@ -173,21 +180,6 @@
             this.lb_Type.Size = new System.Drawing.Size(40, 17);
             this.lb_Type.TabIndex = 1;
             this.lb_Type.Text = "Type";
-            // 
-            // cb_Type
-            // 
-            this.cb_Type.FormattingEnabled = true;
-            this.cb_Type.Location = new System.Drawing.Point(63, 32);
-            this.cb_Type.Name = "cb_Type";
-            this.cb_Type.Size = new System.Drawing.Size(237, 24);
-            this.cb_Type.TabIndex = 0;
-            // 
-            // tb_Name
-            // 
-            this.tb_Name.Location = new System.Drawing.Point(63, 72);
-            this.tb_Name.Name = "tb_Name";
-            this.tb_Name.Size = new System.Drawing.Size(236, 22);
-            this.tb_Name.TabIndex = 2;
             // 
             // lb_Name
             // 
@@ -198,17 +190,26 @@
             this.lb_Name.TabIndex = 0;
             this.lb_Name.Text = "Name";
             // 
+            // cb_Type
+            // 
+            this.cb_Type.FormattingEnabled = true;
+            this.cb_Type.Location = new System.Drawing.Point(63, 32);
+            this.cb_Type.Name = "cb_Type";
+            this.cb_Type.Size = new System.Drawing.Size(237, 24);
+            this.cb_Type.TabIndex = 0;
+            // 
             // btn_Save
             // 
             this.btn_Save.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_Save.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btn_Save.Location = new System.Drawing.Point(13, 303);
             this.btn_Save.Margin = new System.Windows.Forms.Padding(20);
             this.btn_Save.Name = "btn_Save";
             this.btn_Save.Size = new System.Drawing.Size(75, 31);
             this.btn_Save.TabIndex = 3;
             this.btn_Save.Text = "Save";
-            this.btn_Save.UseVisualStyleBackColor = true;
+            this.btn_Save.UseVisualStyleBackColor = false;
             this.btn_Save.Click += new System.EventHandler(this.btn_Save_Click);
             // 
             // btn_Delete
@@ -229,6 +230,7 @@
             // 
             this.btn_Cancel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btn_Cancel.Location = new System.Drawing.Point(255, 303);
             this.btn_Cancel.Margin = new System.Windows.Forms.Padding(20);
             this.btn_Cancel.Name = "btn_Cancel";
@@ -242,6 +244,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btn_Cancel;
             this.ClientSize = new System.Drawing.Size(342, 348);
             this.Controls.Add(this.btn_Cancel);
             this.Controls.Add(this.btn_Delete);
@@ -249,6 +252,7 @@
             this.Controls.Add(this.gb_Event);
             this.Controls.Add(this.gp_Date);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "FormAddReminder";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Birthday Calendar";

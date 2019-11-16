@@ -1,9 +1,10 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Globalization;
 using System.Windows.Forms;
 
 namespace Birthday_Calendar
-{   
+{
 
     public class MyEvent
     {
@@ -11,7 +12,7 @@ namespace Birthday_Calendar
         public static MonthEnums month;
         public static int year;
         public static TypeEnums type;
-        public static String name;
+        public static string name;
 
         public MyEvent(int d, string m, int y, string t, string n)
         {
@@ -55,6 +56,7 @@ namespace Birthday_Calendar
             }
         }
 
+        /*
         public static int GetMonthValue(MonthEnums month)
         {
             switch (month)
@@ -88,7 +90,7 @@ namespace Birthday_Calendar
             }
         }
 
-        public static string GetType(TypeEnums type)
+        public static string GetTypeName(TypeEnums type)
         {
             switch (type)
             {
@@ -100,7 +102,7 @@ namespace Birthday_Calendar
                     return "Laulību gadadiena";
                 case TypeEnums.M:
                     return "Miršanas gadadiena";
-                case TypeEnums.Vs:
+                case TypeEnums.Sv:
                     return "Valsts svētki";
                 case TypeEnums.C:
                     return "Cits";
@@ -108,6 +110,7 @@ namespace Birthday_Calendar
                     return "Unknown type";
             }
         }
+        */
 
     };
 
@@ -129,15 +132,21 @@ namespace Birthday_Calendar
 
     public enum TypeEnums
     {
-        Dz, // Dzimšanas diena
-        Vd, // Vārda diena
-        Lg, // Laulības gadadiena
-        M, // Miršanas gadadiena
-        Vs, // Valsts svētki
-        C // Citas atzīmējas dienas
+        [Description("Dzimšanas diena")]
+        Dz,
+        [Description("Vārda diena")]
+        Vd,
+        [Description("Laulību gadadiena")]
+        Lg,
+        [Description("Miršanas gadadiena")]
+        M,
+        [Description("Valsts svētki")]
+        Sv,
+        [Description("Cita atzīmējama diena")]
+        C
     };
 
-    static class Program
+    public class Program
     {
 
         /// <summary>
@@ -154,5 +163,7 @@ namespace Birthday_Calendar
             //Console.WriteLine(now);
 
         }
+
     }
+
 }
