@@ -108,6 +108,7 @@
             // 
             // cb_Month
             // 
+            this.cb_Month.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cb_Month.DropDownWidth = 100;
             this.cb_Month.FormattingEnabled = true;
             this.cb_Month.Location = new System.Drawing.Point(63, 63);
@@ -192,6 +193,7 @@
             // 
             // cb_Type
             // 
+            this.cb_Type.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cb_Type.FormattingEnabled = true;
             this.cb_Type.Location = new System.Drawing.Point(63, 32);
             this.cb_Type.Name = "cb_Type";

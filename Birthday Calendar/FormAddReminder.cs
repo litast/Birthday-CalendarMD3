@@ -141,32 +141,102 @@ namespace Birthday_Calendar
 
         private void btn_Save_Click(object sender, EventArgs e)
         {
-            MyEvent.day = int.Parse(tb_Day.Text);
-            MyEvent.month = (MonthEnums)Enum.Parse(typeof(MonthEnums), Convert.ToString(cb_Month.Text));
-            if ((chb_SkipYear.Checked == true) | (chb_SkipYear.Checked == false && string.IsNullOrEmpty(tb_Year.Text)))
+            // Prepare values for saving using MyEvent object class
+            try
             {
-                MyEvent.year = 0000;
+                // Validate day field
+                try
+                {
+                    if (tb_Day.Text != null && tb_Day.Text.Length == 0)
+                    {
+                        MessageBox.Show("Day value not entered", "Error", MessageBoxButtons.OK);
+                        tb_Day.Focus();
+                        tb_Day.Clear();
+                        return;
+                    }
+                    else if ((int.Parse(tb_Day.Text) >= 1) && (int.Parse(tb_Day.Text) <= 31))
+                    {
+                        MyEvent.day = int.Parse(tb_Day.Text);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Incorect day value", "Error", MessageBoxButtons.OK);
+                        tb_Day.Focus();
+                        tb_Day.Clear();
+                        return;
+                    }
+
+                }
+                catch (FormatException ex)
+                {
+                    MessageBox.Show("Error: " + ex, "Error", MessageBoxButtons.OK);
+                    tb_Day.Focus();
+                }
+
+                // Validate month field
+                if (cb_Month.Text != null && cb_Month.Text.Length == 0)
+                {
+                    MessageBox.Show("Month value not choosen", "Error", MessageBoxButtons.OK);
+                    cb_Month.Focus();
+                    return;
+                }
+                else
+                {
+                    MyEvent.month = (MonthEnums)Enum.Parse(typeof(MonthEnums), Convert.ToString(cb_Month.Text));
+                }
+
+                // Validate type field
+                if (cb_Type.Text != null && cb_Type.Text.Length == 0)
+                {
+                    MessageBox.Show("Event type not selected", "Error", MessageBoxButtons.OK);
+                    cb_Type.Focus();
+                    return;
+                }
+                else
+                {
+                    MyEvent.type = MyEvent.GetTypeValue(cb_Type.Text);
+                }
+
+                // Validate name field
+                if (tb_Name.Text != null && tb_Name.Text.Length == 0)
+                {
+                    MessageBox.Show("Name not entered", "Error", MessageBoxButtons.OK);
+                    tb_Name.Focus();
+                    return;
+                }
+                else
+                {
+                    MyEvent.name = tb_Name.Text;
+                }
+
+                // Manage year field
+                if ((chb_SkipYear.Checked == true) | (chb_SkipYear.Checked == false && string.IsNullOrEmpty(tb_Year.Text)))
+                {
+                    MyEvent.year = 0000;
+                }
+                else
+                {
+                    MyEvent.year = int.Parse(tb_Year.Text);
+                }
+
             }
-            else
+            catch (FormatException ex)
             {
-                MyEvent.year = int.Parse(tb_Year.Text);
+                MessageBox.Show("Failed due to " + ex.Message);
+                return;
+                throw;
             }
-
-            MyEvent.type = MyEvent.GetTypeValue(cb_Type.Text);
-
-            MyEvent.name = tb_Name.Text;
 
             if (f1.editModeOn == true)
             {
-                f1.DataTable_DeleteRecord();
+                //f1.DataTable_DeleteRecord();
                 f1.DataTable_AddRecord(MyEvent.day, MyEvent.month, MyEvent.year, MyEvent.type, MyEvent.name);
-
             }
             else
             {
                 f1.DataTable_AddRecord(MyEvent.day, MyEvent.month, MyEvent.year, MyEvent.type, MyEvent.name);
             }
-            this.Dispose();
+            Dispose();
 
         }
 
